@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vũ Trụ — Hành trình 13,8 tỷ năm</title>
+<meta name="description" content="Slide tương tác về vũ trụ: Big Bang, hệ Mặt Trời 3D, tiểu hành tinh, thiên hà và hố đen.">
+<link rel="stylesheet" href="assets/fonts.css">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<canvas id="stars" aria-hidden="true"></canvas>
+<canvas id="gl-stage" aria-hidden="true"></canvas>
+<div class="progress" aria-hidden="true"><i id="progress-fill"></i></div>
+
+<header class="chrome">
+  <div class="brand"><span class="mark"></span>VŨ TRỤ <em>/ 3D</em></div>
+  <div class="chrome-right">
+    <span class="live">Live&nbsp;3D</span>
+    <span class="counter"><b id="cur-num">01</b> / 10</span>
+  </div>
+</header>
+
+<nav class="dots" id="dots" aria-label="Điều hướng slide"></nav>
+<div class="hintbar" aria-hidden="true"><span class="k"><kbd>←</kbd><kbd>→</kbd></span> di chuyển · <span class="k"><kbd>Space</kbd></span> trang kế</div>
+<div id="hover-tip" aria-hidden="true"></div>
+
+<main class="deck" id="deck">
+
+  <section class="slide is-active" data-title="Mở đầu" aria-label="Mở đầu">
+    <div class="wrap cover-grid">
+      <div class="cover-copy">
+        <p class="kicker reveal" style="--d:.05s">Hành trình 13,8 tỷ năm</p>
+        <h1 class="hero reveal" style="--d:.12s">VŨ<br><span class="grad">TRỤ</span></h1>
+        <p class="cover-sub reveal" style="--d:.24s">Từ <b>Big Bang</b> đến những thế giới xa xôi — một chuyến đi qua thời gian, không gian và vật chất.</p>
+        <div class="cover-meta reveal" style="--d:.34s">
+          <span class="pill"><i></i>10 trang</span>
+          <span class="pill"><i></i>Tương tác 3D</span>
+          <span class="pill"><i></i>Nhấp để khám phá</span>
+        </div>
+        <div class="cover-cta reveal" style="--d:.44s">
+          <button class="btn" data-goto="1">Bắt đầu hành trình <span class="arrow">→</span></button>
+          <span class="cover-note">Dùng ← → hoặc cuộn chuột</span>
+        </div>
+      </div>
+      <div class="cover-visual reveal" style="--d:.3s" aria-hidden="true">
+        <div class="cover-glow"></div>
+        <div class="orbit"><span class="sat"></span></div>
+        <div class="cover-earth"><span class="tex"></span><span class="rim"></span></div>
+        <div class="cover-tag"><b>TRÁI ĐẤT</b><span>1 AU · 12.742 km · 1 mặt trăng</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Khởi nguyên" aria-label="Vũ trụ hình thành">
+    <div class="wrap bb-grid">
+      <div>
+        <p class="kicker reveal" style="--d:.05s">01 / Khởi nguyên</p>
+        <h2 class="title reveal" style="--d:.1s">Vũ trụ hình thành<br>như thế nào?</h2>
+        <p class="lede reveal" style="--d:.18s">Cách đây <strong>13,8 tỷ năm</strong>, vũ trụ bắt đầu từ một trạng thái nóng, đặc và cực nhỏ. Từ khoảnh khắc ấy, không gian giãn nở, vật chất nguội dần và tự sắp xếp thành những cấu trúc đầu tiên.</p>
+        <div class="stages reveal" style="--d:.26s" role="tablist" aria-label="Các giai đoạn">
+          <button class="stage-btn on" data-stage="0" role="tab" aria-selected="true">Điểm kỳ dị</button>
+          <button class="stage-btn" data-stage="1" role="tab" aria-selected="false">Lạm phát</button>
+          <button class="stage-btn" data-stage="2" role="tab" aria-selected="false">Vũ trụ tối</button>
+          <button class="stage-btn" data-stage="3" role="tab" aria-selected="false">Ánh sáng đầu tiên</button>
+        </div>
+        <div class="bb-stats reveal" style="--d:.34s">
+          <div class="bb-stat"><span>Thời gian</span><b id="bb-time">t = 0</b></div>
+          <div class="bb-stat"><span>Nhiệt độ</span><b id="bb-temp">~10³² K</b></div>
+          <div class="bb-stat"><span>Trạng thái</span><b id="bb-state">Điểm kỳ dị</b></div>
+        </div>
+        <p class="bb-note reveal" style="--d:.42s" id="bb-note"><b>Mọi thứ bắt đầu.</b> Toàn bộ vật chất, năng lượng, không gian và thời gian bị nén vào một điểm có mật độ vô hạn. Các định luật vật lý quen thuộc chưa thể mô tả khoảnh khắc này.</p>
+      </div>
+      <div class="panel bb-canvas-wrap reveal" style="--d:.2s">
+        <span class="corner tl">Mô phỏng · 13,8 tỷ năm</span>
+        <canvas id="bb-canvas" aria-label="Mô phỏng Big Bang"></canvas>
+        <span class="core-label" id="bb-core-label">ĐIỂM KỲ DỊ · t = 0</span>
+        <span class="corner br">không theo tỉ lệ</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Dòng thời gian" aria-label="Dòng thời gian vũ trụ">
+    <div class="wrap">
+      <p class="kicker reveal" style="--d:.05s">02 / Dòng thời gian</p>
+      <h2 class="title reveal" style="--d:.1s">13,8 tỷ năm<br>trong một dòng thời gian</h2>
+      <div class="tl-detail reveal" style="--d:.18s" id="tl-detail">
+        <div class="tl-year" id="tl-year">t = 0<small>13,8 tỷ năm trước</small></div>
+        <div class="tl-copy"><h3 id="tl-title">Vụ nổ khởi nguyên</h3><p id="tl-desc">Không gian, thời gian và vật chất bắt đầu giãn nở từ một điểm kỳ dị. Đây là mốc mà mọi mô hình vũ học hiện đại đều hướng về.</p></div>
+      </div>
+      <div class="tl-track-wrap reveal" style="--d:.26s">
+        <div class="tl-line"><i id="tl-fill"></i></div>
+        <div class="tl-nodes" id="tl-nodes"></div>
+      </div>
+      <button class="tl-play reveal" style="--d:.34s" id="tl-play" aria-label="Tạm dừng tự động">Tự động phát · BẬT</button>
+    </div>
+  </section>
+
+  <section class="slide slide--scene" data-title="Hệ Mặt Trời" aria-label="Hệ Mặt Trời 3D">
+    <div class="scene" id="solar-scene">
+      <div class="scene-loading"><span></span>Đang dựng mô hình 3D…</div>
+    </div>
+    <div class="scene-scrim"></div>
+    <div class="hud tl reveal" style="--d:.15s">
+      <p class="kicker">03 / Hệ Mặt Trời</p>
+      <h2>Nhấp vào<br>một hành tinh</h2>
+      <p>8 hành tinh quay quanh một ngôi sao. Kéo để xoay góc nhìn, nhấp vào bất kỳ thiên thể nào để mở hồ sơ của nó.</p>
+      <div class="hud-stats">
+        <div class="hud-stat"><b>4,6 tỷ</b><span>năm tuổi</span></div>
+        <div class="hud-stat"><b>8</b><span>hành tinh</span></div>
+        <div class="hud-stat"><b>1 AU</b><span>Trái Đất → Mặt Trời</span></div>
+      </div>
+    </div>
+    <div class="planet-bar reveal" style="--d:.3s" id="planet-bar" aria-label="Chọn hành tinh"></div>
+    <div class="scene-hint"><i></i>Kéo để xoay · Nhấp để khám phá</div>
+  </section>
+
+  <section class="slide" data-title="Hành tinh đá" aria-label="Các hành tinh đá">
+    <div class="wrap">
+      <p class="kicker reveal" style="--d:.05s">04 / Thế giới đá</p>
+      <h2 class="title reveal" style="--d:.1s">Bốn hành tinh đá</h2>
+      <p class="lede reveal" style="--d:.16s">Nhỏ, rắn và gần Mặt Trời — nơi vật chất nặng kết tụ lại. Nhấp vào một hành tinh để xem hồ sơ chi tiết.</p>
+      <div class="cards" id="rocky-grid"></div>
+    </div>
+  </section>
+
+  <section class="slide" data-title="Hành tinh khí" aria-label="Các hành tinh khí và băng">
+    <div class="wrap">
+      <p class="kicker reveal" style="--d:.05s">05 / Những gã khổng lồ</p>
+      <h2 class="title reveal" style="--d:.1s">Hành tinh khí &amp; băng</h2>
+      <p class="lede reveal" style="--d:.16s">Không có bề mặt rắn — chỉ là những đại dương khí dày hàng nghìn km, bao quanh một lõi đá và băng.</p>
+      <div class="cards" id="giant-grid"></div>
+    </div>
+  </section>
+
+  <section class="slide slide--scene" data-title="Tiểu hành tinh" aria-label="Vành đai tiểu hành tinh 3D">
+    <div class="scene" id="belt-scene">
+      <div class="scene-loading"><span></span>Đang dựng vành đai…</div>
+    </div>
+    <div class="scene-scrim"></div>
+    <div class="hud bl reveal" style="--d:.15s">
+      <p class="kicker">06 / Mảnh vụn</p>
+      <h2>Vành đai<br>tiểu hành tinh</h2>
+      <p>Giữa Sao Hỏa và Sao Mộc là một vòng đá và băng khổng lồ — tàn dư của quá trình hình thành hệ Mặt Trời. Chúng không dày đặc như phim: các tiểu hành tinh cách nhau hàng trăm nghìn km.</p>
+      <div class="hud-stats">
+        <div class="hud-stat"><b>2,2–3,2</b><span>AU từ Mặt Trời</span></div>
+        <div class="hud-stat"><b>~1,1 triệu</b><span>thiên thể &gt;1 km</span></div>
+        <div class="hud-stat"><b>4,6 tỷ</b><span>năm tuổi</span></div>
+      </div>
+      <div class="planet-bar" style="position:static; transform:none; margin:18px 0 0; justify-content:flex-start; background:rgba(255,255,255,.02)">
+        <button class="pchip" data-planet="ceres"><i style="--c:#b9b2a4"></i>Ceres</button>
+        <button class="pchip" data-planet="vesta"><i style="--c:#c8a98a"></i>Vesta</button>
+        <button class="pchip" data-planet="psyche"><i style="--c:#a9a29b"></i>Psyche</button>
+      </div>
+    </div>
+    <div class="belt-labels" id="belt-labels" aria-hidden="true"></div>
+    <div class="scene-hint"><i></i>Kéo để xoay · Nhấp vào đá lớn</div>
+  </section>
+
+  <section class="slide slide--scene" data-title="Thiên hà" aria-label="Thiên hà 3D">
+    <div class="scene" id="galaxy-scene">
+      <div class="scene-loading"><span></span>Đang dựng thiên hà…</div>
+    </div>
+    <div class="scene-scrim"></div>
+    <div class="hud tl reveal" style="--d:.15s">
+      <p class="kicker">07 / Hòn đảo sao</p>
+      <h2>Thiên hà —<br>những hòn đảo sao</h2>
+      <p>Mỗi thiên hà là một tập hợp hàng trăm tỷ ngôi sao, khí và bụi, bị giữ lại bởi trọng lực. Dải Ngân Hà của chúng ta là một thiên hà xoắn ốc có thanh.</p>
+      <div class="hud-stats">
+        <div class="hud-stat"><b>100.000</b><span>năm ánh sáng</span></div>
+        <div class="hud-stat"><b>200–400 tỷ</b><span>ngôi sao</span></div>
+        <div class="hud-stat"><b>26.000</b><span>ly từ tâm</span></div>
+      </div>
+      <div class="gal-types">
+        <div class="gal-type"><b>Xoắn ốc</b><span>Có cánh tay xoay chậm — như Dải Ngân Hà.</span></div>
+        <div class="gal-type"><b>Elip</b><span>Già, ít khí, gần như không còn tạo sao.</span></div>
+        <div class="gal-type"><b>Bất định</b><span>Méo mó, thường do va chạm giữa các thiên hà.</span></div>
+      </div>
+    </div>
+    <div class="scene-hint"><i></i>Kéo để xoay thiên hà</div>
+  </section>
+
+  <section class="slide slide--scene" data-title="Hố đen" aria-label="Hố đen 3D">
+    <div class="scene" id="bh-scene">
+      <div class="scene-loading"><span></span>Đang uốn cong không–thời gian…</div>
+    </div>
+    <div class="scene-scrim right"></div>
+    <div class="hud tr reveal" style="--d:.15s">
+      <p class="kicker">08 / Điểm kỳ dị</p>
+      <h2>Hố đen —<br>nơi ánh sáng dừng lại</h2>
+      <p>Hố đen không phải cái phễu hút mọi thứ. Nó là vùng không gian nơi mật độ vật chất lớn đến mức ánh sáng không thể thoát ra. Càng gần chân trời sự kiện, thời gian càng trôi chậm so với bên ngoài.</p>
+      <div class="hud-stats two">
+        <div class="hud-stat"><b>4,3 triệu M☉</b><span>Sagittarius A*</span></div>
+        <div class="hud-stat"><b>~24 triệu km</b><span>chân trời sự kiện</span></div>
+        <div class="hud-stat"><b>26.000 ly</b><span>cách Trái Đất</span></div>
+      </div>
+      <div class="bh-tag">Vùng không thể quay lại</div>
+    </div>
+    <div class="scene-hint"><i></i>Kéo để xoay · Mô phỏng</div>
+  </section>
+
+  <section class="slide" data-title="Lời kết" aria-label="Lời kết">
+    <div class="final-planet" aria-hidden="true"></div>
+    <div class="wrap final">
+      <p class="kicker reveal" style="--d:.05s">09 / Lời kết</p>
+      <blockquote class="quote reveal" style="--d:.12s">Chúng ta là một cách để <span class="grad">vũ trụ</span> tự hiểu chính mình.</blockquote>
+      <p class="quote-by reveal" style="--d:.2s">— Carl Sagan</p>
+      <p class="reveal" style="--d:.28s">Mỗi nguyên tử trong cơ thể bạn từng nằm trong lõi một ngôi sao. Hành trình 13,8 tỷ năm ấy dẫn đến khoảnh khắc bạn đang đọc những dòng này.</p>
+      <div class="final-stats reveal" style="--d:.36s">
+        <div class="fstat"><b>13,8 tỷ</b><span>năm lịch sử</span></div>
+        <div class="fstat"><b>~2 nghìn tỷ</b><span>thiên hà</span></div>
+        <div class="fstat"><b>1</b><span>hành tinh có sự sống đã biết</span></div>
+      </div>
+      <div class="final-btns reveal" style="--d:.44s">
+        <button class="btn" data-goto="0"><span class="arrow">↺</span> Xem lại từ đầu</button>
+        <button class="btn ghost" data-goto="3">Khám phá hệ Mặt Trời</button>
+      </div>
+      <p class="credits reveal" style="--d:.52s">Dữ liệu tham khảo <b>NASA · ESA</b> · Mô hình 3D dựng bằng <b>Three.js</b> · Hình ảnh Trái Đất: NASA</p>
+    </div>
+  </section>
+
+</main>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="m-name">
+  <div class="modal-card">
+    <button class="m-close" id="m-close" aria-label="Đóng">×</button>
+    <div class="m-visual">
+      <div class="m-orbit"></div>
+      <div class="m-orb" id="m-orb"><span class="tex" id="m-tex"></span></div>
+    </div>
+    <div class="m-body">
+      <span class="m-type" id="m-type">Hành tinh đá</span>
+      <h3 class="m-name" id="m-name">Sao Thủy</h3>
+      <p class="m-en" id="m-en">Mercury</p>
+      <p class="m-tag" id="m-tag"></p>
+      <p class="m-desc" id="m-desc"></p>
+      <div class="m-grid" id="m-grid"></div>
+      <div class="m-fact"><span>Điều thú vị</span><p id="m-fact"></p></div>
+      <div class="m-nav">
+        <button id="m-prev">← Thiên thể trước</button>
+        <button id="m-next">Thiên thể kế →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="assets/three.min.js"></script>
+<script src="assets/js/earth-data.js"></script>
+<script src="assets/js/core.js"></script>
+<script src="assets/js/scenes.js"></script>
+</body>
+</html>
